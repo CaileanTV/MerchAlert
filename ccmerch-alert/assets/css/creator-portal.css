@@ -1,0 +1,855 @@
+/*
+ * CCMerch Alert — Creator Portal styles.
+ * Standalone page; no WordPress theme or admin CSS is loaded.
+ */
+
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 16px;
+}
+
+body.ccmerch-portal-body {
+	margin: 0;
+	padding: 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	font-size: 1rem;
+	line-height: 1.6;
+	color: #1d2327;
+	background: #f0f0f1;
+	min-height: 100vh;
+}
+
+/* ── Portal shell ────────────────────────────────────────────────────────── */
+
+.ccmerch-portal {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	max-width: 680px;
+	margin: 0 auto;
+	padding: 0 20px;
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+
+.ccmerch-portal__header {
+	padding: 48px 0 32px;
+	border-bottom: 1px solid #c3c4c7;
+}
+
+.ccmerch-portal__brand {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: 16px;
+}
+
+.ccmerch-portal__brand-label {
+	font-size: 0.75rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: #72aee6;
+}
+
+.ccmerch-portal__brand-sep {
+	color: #c3c4c7;
+	font-size: 0.75rem;
+}
+
+.ccmerch-portal__name {
+	margin: 0;
+	font-size: 2rem;
+	font-weight: 700;
+	line-height: 1.2;
+	color: #1d2327;
+}
+
+/* ── Main content ────────────────────────────────────────────────────────── */
+
+.ccmerch-portal__main {
+	flex: 1;
+	padding: 32px 0;
+}
+
+.ccmerch-portal__meta {
+	margin-bottom: 20px;
+}
+
+.ccmerch-portal__status {
+	display: inline-block;
+	padding: 3px 10px;
+	border-radius: 3px;
+	font-size: 0.75rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+.ccmerch-portal__status--active {
+	background: #d1e7dd;
+	color: #0f5132;
+}
+
+.ccmerch-portal__status--disabled {
+	background: #e9ecef;
+	color: #6c757d;
+}
+
+.ccmerch-portal__description {
+	margin: 0 0 24px;
+	font-size: 0.9375rem;
+	color: #50575e;
+	line-height: 1.65;
+}
+
+/* ── Coming soon card ────────────────────────────────────────────────────── */
+
+.ccmerch-portal__coming-soon {
+	background: #fff;
+	border: 1px solid #c3c4c7;
+	border-radius: 4px;
+	padding: 40px 32px;
+	text-align: center;
+}
+
+.ccmerch-portal__coming-soon-icon {
+	font-size: 2.5rem;
+	margin-bottom: 16px;
+	opacity: 0.35;
+}
+
+.ccmerch-portal__coming-soon-text {
+	margin: 0;
+	font-size: 0.9375rem;
+	color: #50575e;
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────────── */
+
+.ccmerch-portal__footer {
+	padding: 24px 0;
+	border-top: 1px solid #c3c4c7;
+	text-align: center;
+}
+
+.ccmerch-portal__footer p {
+	margin: 0;
+	font-size: 0.75rem;
+	color: #a7aaad;
+}
+
+/* ── Config portal variant (wider for the layout editor canvas) ─────────── */
+
+.ccmerch-portal--config {
+	max-width: 1400px;
+}
+
+/*
+ * Before layout-editor.js runs, .ccmerch-layout-canvas-col has zero height
+ * (empty child, flex-start alignment). This min-height ensures the dark canvas
+ * background is visible immediately so creators know the designer is loading.
+ * JS overrides this with the exact computed height via canvasEl.style.height.
+ */
+.ccmerch-portal .ccmerch-layout-canvas-col {
+	min-height: 506px;
+}
+
+/* ── Notices ─────────────────────────────────────────────────────────────── */
+
+.ccmerch-portal__notice {
+	padding: 12px 16px;
+	border-left: 4px solid #c3c4c7;
+	background: #fff;
+	margin-bottom: 16px;
+	border-radius: 0 4px 4px 0;
+}
+
+.ccmerch-portal__notice--success {
+	border-left-color: #00a32a;
+	background: #edfaef;
+}
+
+.ccmerch-portal__notice p {
+	margin: 0;
+	font-size: 0.875rem;
+}
+
+/* ── WordPress-style button reset (admin CSS not loaded on this page) ─────── */
+
+.button,
+.button-primary,
+.button-secondary,
+.button-large {
+	display: inline-block;
+	padding: 6px 12px;
+	font-size: 0.8125rem;
+	font-weight: 600;
+	line-height: 1.4;
+	border-radius: 3px;
+	cursor: pointer;
+	border: 1px solid #8c8f94;
+	background: #f6f7f7;
+	color: #2c3338;
+	text-decoration: none;
+	box-shadow: inset 0 -1px 0 rgba(0,0,0,.1);
+	transition: background 0.1s ease;
+}
+
+.button:hover,
+.button-secondary:hover {
+	background: #f0f0f1;
+	border-color: #70737a;
+	color: #2c3338;
+}
+
+.button-primary {
+	background: #2271b1;
+	border-color: #135e96;
+	color: #fff;
+	box-shadow: inset 0 -1px 0 rgba(0,0,0,.25);
+}
+
+.button-primary:hover {
+	background: #135e96;
+	border-color: #0a4b78;
+	color: #fff;
+}
+
+.button-large {
+	padding: 8px 16px;
+	font-size: 0.9375rem;
+}
+
+.button:disabled,
+.button-primary:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+/* ── WordPress form-table compatibility ──────────────────────────────────── */
+
+.form-table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.form-table th {
+	padding: 12px 10px 12px 0;
+	width: 200px;
+	vertical-align: top;
+	font-size: 0.875rem;
+	font-weight: 600;
+	color: #2c3338;
+}
+
+.form-table td {
+	padding: 10px 0;
+	vertical-align: top;
+}
+
+.form-table input[type="number"],
+.form-table input[type="text"],
+.form-table select {
+	font-size: 0.875rem;
+}
+
+.description {
+	margin: 4px 0 0;
+	font-size: 0.8125rem;
+	color: #646970;
+}
+
+input[type="text"].large-text,
+textarea.large-text {
+	width: 100%;
+	font-size: 0.875rem;
+}
+
+/* ── Overlay URL field ───────────────────────────────────────────────────── */
+
+.ccmerch-overlay-url input[type="text"] {
+	width: 100%;
+	font-size: 0.8125rem;
+	padding: 6px 8px;
+	border: 1px solid #8c8f94;
+	border-radius: 3px;
+	color: #2c3338;
+	background: #f6f7f7;
+}
+
+.ccmerch-overlay-url__actions {
+	display: flex;
+	gap: 8px;
+	margin-top: 8px;
+}
+
+/* ── Header top row (brand + changelog button) ───────────────────────────── */
+
+.ccmerch-portal__header-top {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 16px;
+}
+
+.ccmerch-portal__header-top .ccmerch-portal__brand {
+	margin-bottom: 0;
+}
+
+/* ── Changelog Modal ─────────────────────────────────────────────────────── */
+
+.ccmerch-modal {
+	display: none;
+	position: fixed;
+	inset: 0;
+	z-index: 9999;
+	align-items: center;
+	justify-content: center;
+}
+
+.ccmerch-modal--open {
+	display: flex;
+}
+
+.ccmerch-modal__backdrop {
+	position: absolute;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.6);
+	cursor: pointer;
+}
+
+.ccmerch-modal__dialog {
+	position: relative;
+	z-index: 1;
+	background: #fff;
+	border-radius: 4px;
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+	width: 90%;
+	max-width: 520px;
+	max-height: 85vh;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}
+
+.ccmerch-modal__header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 20px 24px 16px;
+	border-bottom: 1px solid #c3c4c7;
+	flex-shrink: 0;
+}
+
+.ccmerch-modal__title {
+	margin: 0;
+	font-size: 1.125rem;
+	font-weight: 700;
+	color: #1d2327;
+}
+
+.ccmerch-modal__close {
+	background: none;
+	border: none;
+	font-size: 1.125rem;
+	cursor: pointer;
+	color: #646970;
+	padding: 4px 8px;
+	line-height: 1;
+	border-radius: 3px;
+	transition: background 0.1s;
+}
+
+.ccmerch-modal__close:hover {
+	background: #f0f0f1;
+	color: #1d2327;
+}
+
+.ccmerch-modal__body {
+	padding: 24px;
+	overflow-y: auto;
+	flex: 1;
+}
+
+.ccmerch-modal__entry + .ccmerch-modal__entry {
+	margin-top: 28px;
+	padding-top: 28px;
+	border-top: 1px solid #f0f0f1;
+}
+
+.ccmerch-modal__version {
+	margin: 0 0 12px;
+	font-size: 0.9375rem;
+	font-weight: 700;
+	color: #2271b1;
+}
+
+.ccmerch-modal__notes {
+	margin: 0;
+	padding: 0 0 0 20px;
+	list-style: disc;
+}
+
+.ccmerch-modal__notes li {
+	margin-bottom: 4px;
+	font-size: 0.875rem;
+	color: #2c3338;
+	line-height: 1.6;
+}
+
+.ccmerch-changelog-loading {
+	text-align: center;
+	color: #646970;
+	padding: 20px 0;
+	margin: 0;
+}
+
+.ccmerch-changelog-error {
+	text-align: center;
+	color: #d63638;
+	padding: 20px 0;
+	margin: 0;
+}
+
+.ccmerch-modal__release-title {
+	margin: 0 0 8px;
+	font-size: 0.875rem;
+	font-weight: 600;
+	color: #1d2327;
+}
+
+.ccmerch-modal__release-desc {
+	margin: 0 0 12px;
+	font-size: 0.875rem;
+	color: #50575e;
+	line-height: 1.6;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+
+@media ( max-width: 520px ) {
+	.ccmerch-portal__header {
+		padding: 32px 0 24px;
+	}
+
+	.ccmerch-portal__name {
+		font-size: 1.5rem;
+	}
+
+	.ccmerch-portal__coming-soon {
+		padding: 32px 20px;
+	}
+
+	.form-table th {
+		display: block;
+		width: auto;
+		padding-bottom: 4px;
+	}
+
+	.form-table td {
+		display: block;
+	}
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Portal Tabs
+────────────────────────────────────────────────────────────────────────────── */
+
+.ccmerch-portal__tabs {
+	display: flex;
+	gap: 4px;
+	margin: 24px 0 0;
+	border-bottom: 2px solid #dcdcde;
+	padding-bottom: 0;
+}
+
+.ccmerch-portal__tab {
+	background: none;
+	border: none;
+	border-bottom: 2px solid transparent;
+	border-radius: 0;
+	color: #50575e;
+	cursor: pointer;
+	font-size: 0.9375rem;
+	font-weight: 500;
+	margin-bottom: -2px;
+	padding: 10px 16px;
+	transition: color 0.15s, border-color 0.15s;
+}
+
+.ccmerch-portal__tab:hover {
+	color: #1d2327;
+}
+
+.ccmerch-portal__tab--active {
+	border-bottom-color: #2271b1;
+	color: #2271b1;
+}
+
+/* Sections shown/hidden by JS */
+.ccmerch-portal__section {
+	display: block;
+}
+
+.ccmerch-portal__section--hidden {
+	display: none !important;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Alert History
+────────────────────────────────────────────────────────────────────────────── */
+
+/* ── Privacy toggle (Uiverse flip switch) ───────────────────────────────── */
+
+/* Privacy toolbar — sits above the history table, never wiped by JS re-renders */
+.ccmerch-history__toolbar {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 10px;
+	padding: 16px 0 8px;
+}
+
+.ccmerch-history__toggle-label {
+	font-size: 0.875rem;
+	font-weight: 500;
+	color: #50575e;
+	cursor: pointer;
+	user-select: none;
+}
+
+/* ── Switch shell (the <label> element) ── */
+.ccmerch-history__toolbar .switch {
+	--button-width: 3.5em;
+	--button-height: 2em;
+	--toggle-diameter: 1.5em;
+	--button-toggle-offset: calc((var(--button-height) - var(--toggle-diameter)) / 2);
+	--toggle-shadow-offset: 10px;
+	--toggle-wider: 3em;
+	--color-grey: #cccccc;
+	--color-green: #4296f4;
+	display: inline-flex;
+	align-items: center;
+	cursor: pointer;
+}
+
+/* ── Slider pill ── */
+.ccmerch-history__toolbar .slider {
+	display: inline-block;
+	width: var(--button-width);
+	height: var(--button-height);
+	background-color: var(--color-grey);
+	border-radius: calc(var(--button-height) / 2);
+	position: relative;
+	transition: 0.3s all ease-in-out;
+}
+
+/* ── Knob ── */
+.ccmerch-history__toolbar .slider::after {
+	content: "";
+	display: inline-block;
+	width: var(--toggle-diameter);
+	height: var(--toggle-diameter);
+	background-color: #fff;
+	border-radius: calc(var(--toggle-diameter) / 2);
+	position: absolute;
+	top: var(--button-toggle-offset);
+	transform: translateX(var(--button-toggle-offset));
+	box-shadow: var(--toggle-shadow-offset) 0 calc(var(--toggle-shadow-offset) * 4) rgba(0, 0, 0, 0.1);
+	transition: 0.3s all ease-in-out;
+}
+
+/* Hide native checkbox */
+.ccmerch-history__toolbar .switch input[type="checkbox"] {
+	display: none;
+}
+
+/* Checked: blue pill */
+.ccmerch-history__toolbar .switch input[type="checkbox"]:checked + .slider {
+	background-color: var(--color-green);
+}
+
+/* Checked: knob slides right */
+.ccmerch-history__toolbar .switch input[type="checkbox"]:checked + .slider::after {
+	transform: translateX(calc(var(--button-width) - var(--toggle-diameter) - var(--button-toggle-offset)));
+	box-shadow: calc(var(--toggle-shadow-offset) * -1) 0 calc(var(--toggle-shadow-offset) * 4) rgba(0, 0, 0, 0.1);
+}
+
+/* Active: knob stretches */
+.ccmerch-history__toolbar .switch input[type="checkbox"]:active + .slider::after {
+	width: var(--toggle-wider);
+}
+
+/* Checked + active: stretched knob stays right-aligned */
+.ccmerch-history__toolbar .switch input[type="checkbox"]:checked:active + .slider::after {
+	transform: translateX(calc(var(--button-width) - var(--toggle-wider) - var(--button-toggle-offset)));
+}
+
+.ccmerch-history {
+	margin-top: 0;
+}
+
+.ccmerch-history__loading,
+.ccmerch-history__error,
+.ccmerch-history__empty {
+	color: #50575e;
+	font-size: 0.9375rem;
+	padding: 16px 0;
+}
+
+.ccmerch-history__error { color: #d63638; }
+
+/* Table layout */
+.ccmerch-history__table {
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	overflow: hidden;
+}
+
+.ccmerch-history__table-header,
+.ccmerch-history__group-row {
+	align-items: center;
+	display: grid;
+	gap: 12px;
+	grid-template-columns: 90px 1fr 80px 140px auto;
+	padding: 10px 14px;
+}
+
+.ccmerch-history__table-header {
+	background: #f6f7f7;
+	border-bottom: 1px solid #dcdcde;
+	font-size: 0.8125rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.03em;
+	color: #50575e;
+}
+
+.ccmerch-history__group {
+	border-bottom: 1px solid #dcdcde;
+}
+
+.ccmerch-history__group:last-child {
+	border-bottom: none;
+}
+
+.ccmerch-history__group-row {
+	background: #fff;
+	font-size: 0.9375rem;
+}
+
+.ccmerch-history__group-row:hover {
+	background: #f9f9f9;
+}
+
+.ccmerch-history__col-order {
+	font-family: monospace;
+	font-size: 0.875rem;
+}
+
+.ccmerch-history__col-count {
+	color: #50575e;
+	font-size: 0.875rem;
+}
+
+.ccmerch-history__col-date {
+	color: #50575e;
+	font-size: 0.8125rem;
+}
+
+.ccmerch-history__col-actions {
+	display: flex;
+	gap: 6px;
+	justify-content: flex-end;
+}
+
+/* Replay button */
+.ccmerch-history__replay-btn {
+	font-size: 0.8125rem !important;
+	padding: 4px 10px !important;
+}
+
+/* Expand button */
+.ccmerch-history__expand-btn {
+	font-size: 0.8125rem !important;
+	padding: 4px 10px !important;
+}
+
+/* Inline replay feedback */
+.ccmerch-history__replay-feedback {
+	display: none;
+	font-size: 0.875rem;
+	padding: 6px 14px;
+}
+
+/* Expanded detail panel */
+.ccmerch-history__detail {
+	display: none;
+	background: #fafafa;
+	border-top: 1px dashed #dcdcde;
+	padding: 12px 14px;
+}
+
+.ccmerch-history__group--open .ccmerch-history__detail {
+	display: block;
+}
+
+/* Per-alert item row */
+.ccmerch-history__alert-item {
+	align-items: center;
+	border-bottom: 1px solid #ebebeb;
+	display: flex;
+	gap: 12px;
+	padding: 10px 0;
+}
+
+.ccmerch-history__alert-item:last-child {
+	border-bottom: none;
+}
+
+.ccmerch-history__alert-img {
+	flex-shrink: 0;
+	height: 48px;
+	width: 48px;
+}
+
+.ccmerch-history__alert-img img {
+	border-radius: 4px;
+	display: block;
+	height: 48px;
+	object-fit: cover;
+	width: 48px;
+}
+
+.ccmerch-history__alert-info {
+	flex: 1;
+	min-width: 0;
+}
+
+.ccmerch-history__alert-meta {
+	color: #50575e;
+	font-size: 0.8125rem;
+	margin-top: 2px;
+}
+
+.ccmerch-history__replay-btn--event {
+	flex-shrink: 0;
+}
+
+/* Pagination */
+.ccmerch-history__pagination {
+	align-items: center;
+	display: flex;
+	gap: 12px;
+	justify-content: center;
+	margin-top: 16px;
+}
+
+.ccmerch-history__page-btn {
+	min-width: 80px;
+}
+
+.ccmerch-history__page-info {
+	color: #50575e;
+	font-size: 0.875rem;
+}
+
+@media ( max-width: 600px ) {
+	.ccmerch-history__table-header,
+	.ccmerch-history__group-row {
+		grid-template-columns: 80px 1fr 70px;
+	}
+
+	.ccmerch-history__col-date {
+		display: none;
+	}
+
+	.ccmerch-history__col-actions {
+		flex-direction: column;
+	}
+}
+
+/* ==========================================================================
+   Chatbot portal section
+   ========================================================================== */
+
+/* Setup notice shown above the chatbot settings form */
+.ccmerch-chatbot-setup-notice {
+	background: #f0f6fc;
+	border-left: 4px solid #2271b1;
+	border-radius: 0 3px 3px 0;
+	padding: 12px 16px;
+	margin-bottom: 20px;
+	font-size: 0.875rem;
+	line-height: 1.6;
+}
+
+.ccmerch-chatbot-setup-notice p {
+	margin: 0 0 8px;
+}
+
+.ccmerch-chatbot-setup-notice p:last-child {
+	margin-bottom: 0;
+}
+
+.ccmerch-chatbot-mod-command {
+	display: inline-block;
+	background: #1e1e2e;
+	color: #a6da95;
+	font-family: monospace;
+	font-size: 1rem;
+	font-weight: 700;
+	padding: 2px 10px;
+	border-radius: 4px;
+	margin-left: 6px;
+	letter-spacing: 0.02em;
+	user-select: all;
+}
+
+.ccmerch-chatbot-setup-notice__secondary {
+	color: #555;
+	font-size: 0.8125rem;
+}
+
+@media (prefers-color-scheme: dark) {
+	.ccmerch-chatbot-setup-notice {
+		background: #1a2535;
+		border-left-color: #4f9ef8;
+	}
+	.ccmerch-chatbot-setup-notice__secondary {
+		color: #aaa;
+	}
+}
+
+:root[data-theme="dark"] .ccmerch-chatbot-setup-notice {
+	background: #1a2535;
+	border-left-color: #4f9ef8;
+}
+
+:root[data-theme="dark"] .ccmerch-chatbot-setup-notice__secondary {
+	color: #aaa;
+}
+
+#ccmerch-chatbot-preview-output {
+	border-radius: 3px;
+	font-size: 0.875rem;
+	line-height: 1.5;
+}
+
+/* Keep the preview output readable on dark backgrounds */
+@media (prefers-color-scheme: dark) {
+	#ccmerch-chatbot-preview-output {
+		background: #2c2c2c;
+		border-left-color: #4f9ef8;
+		color: #e0e0e0;
+	}
+}
+:root[data-theme="dark"] #ccmerch-chatbot-preview-output {
+	background: #2c2c2c;
+	border-left-color: #4f9ef8;
+	color: #e0e0e0;
+}

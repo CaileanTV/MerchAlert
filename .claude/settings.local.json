@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem \"c:\\\\Users\\\\jnn\\\\Desktop\\\\MerchAlert\\\\ccmerch-alert\" -Recurse | Select-Object FullName | ForEach-Object { $_.FullName.Replace\\(\"c:\\\\Users\\\\jnn\\\\Desktop\\\\MerchAlert\\\\ccmerch-alert\\\\\", \"\"\\) })",
+      "PowerShell(Get-ChildItem -Recurse \"c:\\\\Users\\\\jnn\\\\Desktop\\\\MerchAlert\\\\ccmerch-alert\" -File | Select-Object -ExpandProperty FullName | ForEach-Object { $_.Replace\\(\"c:\\\\Users\\\\jnn\\\\Desktop\\\\MerchAlert\\\\ccmerch-alert\\\\\", \"\"\\) } | Sort-Object)",
+      "PowerShell(New-Item -ItemType Directory -Path \"c:\\\\Users\\\\jnn\\\\Desktop\\\\MerchAlert\\\\ccmerch-alert\\\\includes\\\\layout\" -Force)",
+      "PowerShell(\\(Get-Content \"c:\\\\Users\\\\jnn\\\\Desktop\\\\MerchAlert\\\\CLAUDE.md\" | Measure-Object -Line\\).Lines)",
+      "Bash(mkdir -p \"c:/Users/jnn/Desktop/MerchAlert/ccmerch-alert/includes/releases\" \"c:/Users/jnn/Desktop/MerchAlert/ccmerch-alert/includes/api\")",
+      "PowerShell(\\(Get-Item \"c:\\\\Users\\\\jnn\\\\Desktop\\\\MerchAlert\\\\ccmerch-alert\\\\assets\\\\js\\\\overlay.js\"\\).LastWriteTime; \\(Get-Item \"c:\\\\Users\\\\jnn\\\\Desktop\\\\MerchAlert\\\\ccmerch-alert\\\\assets\\\\css\\\\overlay.css\"\\).LastWriteTime)",
+      "WebFetch(domain:dev.twitch.tv)",
+      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\Users\\\\jnn\\\\Desktop\\\\MerchAlert\\\\ccmerch-alert\\\\bin\")",
+      "Bash(xargs grep -l \"Chatbot_Message_Service\\\\|class Chatbot_Message_Service\")",
+      "Bash(grep -rn '$Product\\\\|DEFAULT_TEMPLATE' c:/Users/jnn/Desktop/MerchAlert/ccmerch-alert/includes/creators/class-creator-portal-renderer.php)",
+      "Bash(php -v)",
+      "Bash(which php php8 php8.1 2>&1 *)",
+      "Read(//c/xampp/**)",
+      "Read(//c//**)",
+      "Bash(\"/c/xampp/php/php.exe\" -v)",
+      "PowerShell(Get-Command php -ErrorAction SilentlyContinue)",
+      "Bash(docker --version)",
+      "Bash(composer --version)",
+      "Bash(\"/c/xampp2/php/php.exe\" -v)",
+      "Bash(grep -n \"^### \\\\`CCMerchAlert\\\\\\\\\\\\\\\\Chatbot\\\\\\\\\\\\\\\\Chatbot_Message_Service\\\\`\\\\|^### \\\\`CCMerchAlert\\\\\\\\\\\\\\\\Creators\\\\\\\\\\\\\\\\Creator_Overlay_Controller\\\\`\" \"c:/Users/jnn/Desktop/MerchAlert/CLAUDE.md\")",
+      "Bash(grep -n \"^### \\\\`CCMerchAlert\\\\\\\\\\\\\\\\Chatbot\\\\\\\\\\\\\\\\Chatbot_Message_Service\\\\`\" \"c:/Users/jnn/Desktop/MerchAlert/CLAUDE.md\")",
+      "Bash(\"/c/xampp2/php/php.exe\" -l \"c:/Users/jnn/Desktop/MerchAlert/ccmerch-alert/includes/chatbot/class-chatbot-message-log-repository.php\")",
+      "Bash(\"/c/xampp2/php/php.exe\" -l \"c:/Users/jnn/Desktop/MerchAlert/ccmerch-alert/includes/chatbot/class-chatbot-message-log-installer.php\")",
+      "Bash(\"/c/xampp2/php/php.exe\" -l \"c:/Users/jnn/Desktop/MerchAlert/ccmerch-alert/includes/chatbot/class-chatbot-message-service.php\")",
+      "Bash(\"/c/xampp2/php/php.exe\" -l \"c:/Users/jnn/Desktop/MerchAlert/ccmerch-alert/includes/creators/class-creator-overlay-controller.php\")",
+      "Bash(\"/c/xampp2/php/php.exe\" -l \"c:/Users/jnn/Desktop/MerchAlert/ccmerch-alert/uninstall.php\")"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\jnn\\Desktop\\MerchAlert\\ccmerch-alert\\includes"
+    ]
+  }
+}

@@ -1,0 +1,402 @@
+/*
+ * CCMerch Alert — Layout Editor styles.
+ * Loaded exclusively on the Layout Editor admin page.
+ */
+
+/* ── Page wrap ───────────────────────────────────────────────────────────── */
+
+.ccmerch-layout-wrap .description {
+	max-width: 860px;
+	margin-bottom: 0;
+}
+
+/* ── Toolbar ─────────────────────────────────────────────────────────────── */
+
+.ccmerch-layout-toolbar {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 12px 0;
+	margin-bottom: 0;
+	border-bottom: 1px solid #f0f0f1;
+}
+
+.ccmerch-layout-toolbar__snap {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	font-size: 13px;
+	cursor: pointer;
+	user-select: none;
+}
+
+.ccmerch-layout-toolbar__gridsize {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	font-size: 13px;
+}
+
+.ccmerch-layout-toolbar__gridsize input[type="number"] {
+	width: 56px;
+}
+
+.ccmerch-layout-toolbar__spacer {
+	flex: 1;
+}
+
+.ccmerch-layout-save-status {
+	font-size: 13px;
+}
+
+.ccmerch-layout-save-status--ok  { color: #00a32a; }
+.ccmerch-layout-save-status--err { color: #d63638; }
+
+/* ── Editor: two-column layout ───────────────────────────────────────────── */
+
+.ccmerch-layout-editor {
+	display: flex;
+	align-items: flex-start;
+	gap: 0;
+	margin-top: 0;
+	border: 1px solid #c3c4c7;
+	border-top: none;
+	background: #fff;
+}
+
+/* Canvas column — fills remaining width. */
+.ccmerch-layout-canvas-col {
+	flex: 1;
+	min-width: 0;
+	background: #1a1a2e;
+}
+
+/* Properties column — fixed width sidebar. */
+.ccmerch-layout-props-col {
+	width: 272px;
+	flex-shrink: 0;
+	border-left: 1px solid #c3c4c7;
+	background: #fff;
+	align-self: stretch;
+}
+
+/* ── Canvas wrap ─────────────────────────────────────────────────────────── */
+
+.ccmerch-layout-canvas-wrap {
+	position: relative;
+	width: 100%;
+	line-height: 0; /* remove baseline gap under canvas div */
+}
+
+/* The actual 1920×1080 (scaled) canvas. JS sets width/height in px. */
+.ccmerch-layout-canvas {
+	position: relative;
+	overflow: hidden;
+	/* Transparent-scene checkerboard */
+	background-color: #12121e;
+	background-image:
+		linear-gradient( 45deg, #1a1a30 25%, transparent 25% ),
+		linear-gradient( -45deg, #1a1a30 25%, transparent 25% ),
+		linear-gradient( 45deg, transparent 75%, #1a1a30 75% ),
+		linear-gradient( -45deg, transparent 75%, #1a1a30 75% );
+	background-size: 20px 20px;
+	background-position: 0 0, 0 10px, 10px -10px, -10px 0;
+	cursor: default;
+	user-select: none;
+}
+
+/* ── Alignment guide lines ───────────────────────────────────────────────── */
+
+.ccmerch-layout-guide {
+	position: absolute;
+	pointer-events: none;
+	z-index: 100;
+}
+
+.ccmerch-layout-guide--h {
+	left: 0;
+	right: 0;
+	height: 1px;
+	background: #00e5ff;
+	margin-top: -1px;
+}
+
+.ccmerch-layout-guide--v {
+	top: 0;
+	bottom: 0;
+	width: 1px;
+	background: #00e5ff;
+	margin-left: -1px;
+}
+
+/* ── Draggable element overlays ──────────────────────────────────────────── */
+
+.ccmerch-layout-el {
+	position: absolute;
+	box-sizing: border-box;
+	border: 1px dashed rgba( 255, 255, 255, 0.25 );
+	cursor: move;
+	z-index: 10;
+	transition: border-color 0.1s;
+}
+
+.ccmerch-layout-el:hover {
+	border-color: rgba( 114, 174, 230, 0.6 );
+}
+
+.ccmerch-layout-el--selected {
+	border: 2px solid #72aee6;
+	z-index: 20;
+}
+
+/* Content area fills the full element box. */
+.ccmerch-layout-el__content {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+}
+
+/* Label shown when element is selected or hovered. */
+.ccmerch-layout-el__label {
+	position: absolute;
+	top: -18px;
+	left: 0;
+	font-size: 10px;
+	line-height: 16px;
+	white-space: nowrap;
+	color: #72aee6;
+	background: rgba( 0, 0, 0, 0.65 );
+	padding: 0 4px;
+	border-radius: 2px;
+	display: none;
+	pointer-events: none;
+	z-index: 30;
+}
+
+.ccmerch-layout-el:hover   .ccmerch-layout-el__label,
+.ccmerch-layout-el--selected .ccmerch-layout-el__label {
+	display: block;
+}
+
+/* ── Resize handles ──────────────────────────────────────────────────────── */
+
+.ccmerch-layout-el__handle {
+	position: absolute;
+	width: 8px;
+	height: 8px;
+	background: #72aee6;
+	border: 1px solid #1d6ba0;
+	border-radius: 2px;
+	z-index: 25;
+	display: none;
+}
+
+.ccmerch-layout-el--selected .ccmerch-layout-el__handle {
+	display: block;
+}
+
+/* Corner handles */
+.ccmerch-layout-el__handle--nw { top: -4px;  left: -4px;  cursor: nw-resize; }
+.ccmerch-layout-el__handle--ne { top: -4px;  right: -4px; cursor: ne-resize; }
+.ccmerch-layout-el__handle--se { bottom: -4px; right: -4px; cursor: se-resize; }
+.ccmerch-layout-el__handle--sw { bottom: -4px; left: -4px;  cursor: sw-resize; }
+
+/* Midpoint handles */
+.ccmerch-layout-el__handle--n {
+	top: -4px;
+	left: calc( 50% - 4px );
+	cursor: n-resize;
+}
+.ccmerch-layout-el__handle--s {
+	bottom: -4px;
+	left: calc( 50% - 4px );
+	cursor: s-resize;
+}
+.ccmerch-layout-el__handle--e {
+	right: -4px;
+	top: calc( 50% - 4px );
+	cursor: e-resize;
+}
+.ccmerch-layout-el__handle--w {
+	left: -4px;
+	top: calc( 50% - 4px );
+	cursor: w-resize;
+}
+
+/* ── Properties panel ────────────────────────────────────────────────────── */
+
+.ccmerch-layout-props {
+	padding: 16px;
+	overflow-y: auto;
+	min-height: 420px;
+}
+
+.ccmerch-layout-props__empty {
+	color: #8c8f94;
+	font-size: 13px;
+	padding: 8px 0;
+}
+
+.ccmerch-layout-props__empty p {
+	margin: 0;
+}
+
+.ccmerch-layout-props__header {
+	font-size: 13px;
+	font-weight: 600;
+	color: #1d2327;
+	padding-bottom: 12px;
+	border-bottom: 1px solid #f0f0f1;
+	margin-bottom: 0;
+}
+
+.ccmerch-layout-props__section {
+	padding: 12px 0;
+	border-bottom: 1px solid #f0f0f1;
+}
+
+.ccmerch-layout-props__section:last-child {
+	border-bottom: none;
+}
+
+.ccmerch-layout-props__row {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	margin-bottom: 10px;
+}
+
+.ccmerch-layout-props__row:last-child {
+	margin-bottom: 0;
+}
+
+.ccmerch-layout-props__row label {
+	font-size: 12px;
+	color: #50575e;
+	font-weight: 500;
+}
+
+.ccmerch-layout-props__row input[type="text"],
+.ccmerch-layout-props__row input[type="number"],
+.ccmerch-layout-props__row select {
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+	font-size: 13px;
+}
+
+.ccmerch-layout-props__row input[type="color"] {
+	width: 48px;
+	height: 32px;
+	padding: 2px;
+	cursor: pointer;
+}
+
+/* Checkbox row: inline label. */
+.ccmerch-layout-props__row--inline {
+	flex-direction: row;
+	align-items: center;
+	gap: 8px;
+}
+
+.ccmerch-layout-props__row--inline label {
+	font-weight: normal;
+	cursor: pointer;
+}
+
+/* Four-column grid for X / Y / W / H. */
+.ccmerch-layout-props__row--xywh {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	gap: 6px;
+	align-items: end;
+}
+
+.ccmerch-layout-props__row--xywh label {
+	font-size: 11px;
+	color: #8c8f94;
+}
+
+.ccmerch-layout-props__row--xywh input {
+	width: 100%;
+	box-sizing: border-box;
+	font-size: 12px;
+}
+
+/* Two-column grid for side-by-side fields. */
+.ccmerch-layout-props__row--half {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 8px;
+	align-items: end;
+}
+
+.ccmerch-layout-props__row--half label {
+	font-size: 12px;
+	color: #50575e;
+}
+
+.ccmerch-layout-props__row--half input,
+.ccmerch-layout-props__row--half select {
+	width: 100%;
+	box-sizing: border-box;
+}
+
+/* Canvas dimensions banner */
+.ccmerch-layout-canvas-label {
+	font-size: 10px;
+	color: rgba( 255, 255, 255, 0.3 );
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	padding: 4px 8px;
+	background: #12121e;
+	text-align: right;
+	line-height: 1;
+}
+
+/* Background selected — subtle canvas outline */
+.ccmerch-layout-canvas--bg-selected {
+	outline: 2px solid #72aee6;
+	outline-offset: -2px;
+}
+
+/* ── Properties panel — extended controls ────────────────────────────────── */
+
+/* Textarea in props panel (template editor) */
+.ccmerch-layout-props__panel textarea {
+	width: 100%;
+	box-sizing: border-box;
+	font-size: 12px;
+	line-height: 1.5;
+	resize: vertical;
+	min-height: 60px;
+	margin-top: 2px;
+}
+
+/* Full-width text inputs and selects inside props panel */
+.ccmerch-layout-props__panel input[type="text"],
+.ccmerch-layout-props__panel select {
+	width: 100%;
+	box-sizing: border-box;
+}
+
+/* Color picker sizing */
+.ccmerch-layout-props__panel input[type="color"] {
+	width: 48px;
+	height: 32px;
+	padding: 2px;
+	cursor: pointer;
+	border: 1px solid #c3c4c7;
+	border-radius: 2px;
+}
+
+/* Labels inside propRow wrap the entire control block */
+.ccmerch-layout-props__row > label {
+	display: block;
+}
+
+/* Select menus in half-width grid */
+.ccmerch-layout-props__row--half select {
+	width: 100%;
+	box-sizing: border-box;
+}

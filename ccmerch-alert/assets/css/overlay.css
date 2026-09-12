@@ -1,0 +1,83 @@
+/*
+ * CCMerch Alert — Overlay page styles.
+ *
+ * Loaded exclusively on the browser-source overlay page (standalone HTML, no
+ * WordPress theme). Appearance values (font, color, size, position) are injected
+ * as CSS custom properties and inline styles via the rendered page head.
+ *
+ * Three independently positioned elements replace the old single flex container:
+ *   #ccmerch-overlay-image     — product thumbnail
+ *   #ccmerch-overlay-text      — primary alert text
+ *   #ccmerch-overlay-secondary — secondary alert text (optional)
+ *
+ * Animation states (applied to .ccmerch-overlay-el):
+ *   --hidden  : invisible, slightly below final position (initial / post-alert)
+ *   --visible : fully visible, in final position
+ *   --hiding  : fading out, slightly above final position
+ */
+
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+	background: transparent;
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+}
+
+/* ── Independently positioned overlay elements ────────────────────────────── */
+
+.ccmerch-overlay-el {
+	pointer-events: none;
+
+	/* Transition driven by --ccmerch-anim, injected per-page from settings. */
+	transition:
+		opacity   var( --ccmerch-anim, 0.5s ) ease,
+		transform var( --ccmerch-anim, 0.5s ) ease;
+}
+
+.ccmerch-overlay-el--hidden {
+	opacity: 0;
+	transform: translateY( 20px );
+}
+
+.ccmerch-overlay-el--visible {
+	opacity: 1;
+	transform: translateY( 0 );
+}
+
+.ccmerch-overlay-el--hiding {
+	opacity: 0;
+	transform: translateY( -20px );
+}
+
+/* ── Product thumbnail ────────────────────────────────────────────────────── */
+
+.ccmerch-overlay__thumb {
+	display: block;
+	width:  100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: var( --ccmerch-img-border-radius, 4px );
+}
+
+/* ── Text elements ────────────────────────────────────────────────────────── */
+
+.ccmerch-overlay__text {
+	font-family:  var( --ccmerch-font-family,  inherit );
+	font-size:    var( --ccmerch-font-size,    32px );
+	font-weight:  var( --ccmerch-font-weight,  700 );
+	color:        var( --ccmerch-text-color,   #ffffff );
+	text-shadow:  var( --ccmerch-text-shadow,  2px 2px 4px rgba( 0, 0, 0, 0.8 ) );
+	text-align:   var( --ccmerch-text-align,   center );
+	line-height:  1.3;
+	word-break:   break-word;
+	overflow:     hidden;
+
+	/* Background, border-radius, and padding are injected as inline styles
+	 * from the renderer so they use the saved settings values. */
+}
